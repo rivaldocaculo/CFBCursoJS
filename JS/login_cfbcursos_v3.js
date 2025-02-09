@@ -120,8 +120,8 @@ class Login{
     }
 
     static verificarLogin=()=>{
-        const mat=document.querySelector("#f_password").value;
-        const pas=document.querySelector("#f_senha").value;
+        const mat=document.querySelector("#f_username").value;
+        const pas=document.querySelector("#f_password").value;
 
         const endpoint=`${this.config.endpoint}/?matricula=${mat}&senha=${pas}`;
         fetch(endpoint)
