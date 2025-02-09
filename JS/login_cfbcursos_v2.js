@@ -13,6 +13,10 @@ class Login {
     };
 
     static login=(callback_ok,callback_nao_ok,config)=>{
+        sessionStorage.setItem("logado","false");
+        sessionStorage.setItem("matlogado","");
+        sessionStorage.setItem("nomelogado","");
+        sessionStorage.setItem("acessologado","");
         this.config = config;
         this.callback_ok=()=>{callback_ok()};
         this.callback_nao_ok=()=>{callback_nao_ok()};
@@ -96,6 +100,10 @@ class Login {
         btn_cancelar.setAttribute("id","btn_cancelar")
         btn_cancelar.innerHTML = "Cancelar"
         btn_cancelar.addEventListener("click",(evt)=>{
+            sessionStorage.setItem("logado","false");
+            sessionStorage.setItem("matlogado","");
+            sessionStorage.setItem("nomelogado","");
+            sessionStorage.setItem("acessologado","");
             this.fechar()
         })
         botoesLogin.appendChild(btn_cancelar)
@@ -115,17 +123,15 @@ class Login {
         const mat = document.getElementById("f_username").value;
         const pas = document.getElementById("f_password").value;
 
-        const endpoint = `${this.config.endpoint}/?matricula=${mat}&senha=${pas}`
+        const endpoint = `${this.config.endpoint}/?matricula=${mat}&senha=${pas}`;
          fetch(endpoint)
         .then(res => res.json())
         .then(res => {
-            console.log("Resposta da requisição:", res);
             if(res){
                 sessionStorage.setItem("logado","true");
                 sessionStorage.setItem("matlogado",mat);
                 sessionStorage.setItem("nomelogado",res.nome);
                 sessionStorage.setItem("acessologado",res.acesso);
-                console.log(sessionStorage)
                 this.callback_ok();
                 this.fechar();
             }else{
