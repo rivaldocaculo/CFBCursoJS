@@ -7,23 +7,15 @@ class Login {
     static callback_ok = null;
     static callback_nao_ok = null;
     static config = {
-        cor: "rgba(30, 126, 236, 0.801)",
-        img: "../img/login1.png"
+        cor: null, //"rgba(30, 126, 236, 0.801)",
+        img: null,
+        endpoint: null, //"https://af591cea-e942-4023-bfef-0516e19d00c2-00-28hp6ztbk1kjc.kirk.replit.dev/"
     };
-    static endpoint = "https://af591cea-e942-4023-bfef-0516e19d00c2-00-28hp6ztbk1kjc.kirk.replit.dev/";
 
-    static login=(callback_ok,callback_nao_ok,config=null)=>{
-        if(config != null){
-            this.config = config
-        }
-        this.callback_ok=()=>{
-            callback_ok()
-        }
-
-        this.callback_nao_ok=()=>{
-            callback_nao_ok()
-        }
-
+    static login=(callback_ok,callback_nao_ok,config)=>{
+        this.config = config;
+        this.callback_ok=()=>{callback_ok()};
+        this.callback_nao_ok=()=>{callback_nao_ok()};
         this.estilocss =
         ".fundoLogin{display:flex; justify-content:center; align-items:center; width:100%; height:100vh; position:absolute; top:0px;left: 0px; background-color: rgba(0,0,0,0.75); box-sizing:border-box;}"+
         ".baseLogin{display:flex; justify-content:center; align-items:stretch; width:40%; box-sizing:inherit;}"+  
@@ -117,44 +109,64 @@ class Login {
         imgLogoLogin.setAttribute("title","CFBCursos")
         imgLogoLogin.setAttribute("src",this.config.img)
         logoLogin.appendChild(imgLogoLogin)
-
-       
     }
 
     static verificarLogin=()=>{
         const mat = document.getElementById("f_username").value;
         const pas = document.getElementById("f_password").value;
 
-        const endpoint = `https://af591cea-e942-4023-bfef-0516e19d00c2-00-28hp6ztbk1kjc.kirk.replit.dev/?matricula=${mat}&senha=${pas}`
-
+        const endpoint = `${this.config.endpoint}/?matricula=${mat}&senha=${pas}`
          fetch(endpoint)
         .then(res => res.json())
         .then(res => {
             if(res){
-                this.logado = true;
-                this.matlogado = mat;
-                this.nomelogado = res.nome;
-                this.acessologado = res.acesso;
+                sessionStorage.setItem("logado","true");
+                sessionStorage.setItem("matlogado",mat);
+                sessionStorage.setItem("nomeLogado",res.nome);
+                sessionStorage.setItem("acessologado",res.acesso);
                 this.callback_ok();
                 this.fechar();
             }else{
-                this.logado = false;
-                this.matlogado = null;
-                this.nomelogado = null;
-                this.acessologado = null;
+                sessionStorage.setItem("logado","false");
+                sessionStorage.setItem("matlogado","");
+                sessionStorage.setItem("nomeLogado","");
+                sessionStorage.setItem("acessologado","");
                 this.callback_nao_ok();
             }
         })
     }
 
     static fechar=()=>{
-
         const fundoLogin = document.getElementById("fundoLogin");
         fundoLogin.remove();
-
         const id_estiloLogin = document.getElementById("id_estiloLogin");
         id_estiloLogin.remove();
     }
 }
 
 // export {Login};
+// var http = require('http');
+// var url = require('url');
+// http.createServer(function(req, res) {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.writeHead(200, {'Content-Type': 'application/json'});
+
+//   let parametros=url.parse(req.url,true);
+
+//   let mat=parametros.query.matricula;
+//   let pas=parametros.query.senha;
+
+//   let dados=null
+  
+//   if(mat=="123" && pas=="321"){
+//     dados = {
+//       nome: "Rivaldo",
+//       acesso: 10
+//     }
+//   }
+  
+//   res.end(JSON.stringify(dados));
+// }).listen(8080);
+
+//Exemplo de chamada
+//https://af591cea-e942-4023-bfef-0516e19d00c2-00-28hp6ztbk1kjc.kirk.replit.dev/?matricula=123&senha=321
