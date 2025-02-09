@@ -119,11 +119,13 @@ class Login {
          fetch(endpoint)
         .then(res => res.json())
         .then(res => {
+            console.log("Resposta da requisição:", res);
             if(res){
                 sessionStorage.setItem("logado","true");
                 sessionStorage.setItem("matlogado",mat);
                 sessionStorage.setItem("nomelogado",res.nome);
                 sessionStorage.setItem("acessologado",res.acesso);
+                console.log(sessionStorage)
                 this.callback_ok();
                 this.fechar();
             }else{
