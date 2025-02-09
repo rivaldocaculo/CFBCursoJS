@@ -1,0 +1,2 @@
+let contactos = []
+export {contactos}

@@ -1,0 +1,17 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    box-sizing: border-box;
+    font-size: large;
+}
+
+.caixa{
+    width: 400px;
+    border: 5px solid #000;
+    margin:5px;
+    padding: 5px;
+    border-radius: 10px;
+    flex-direction: column;
+    display: flex;
+}

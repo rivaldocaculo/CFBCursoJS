@@ -1,0 +1,5 @@
+
+{
+	"Nome": "Rivaldo",
+	"canal": "Caculo"
+}
