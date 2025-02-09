@@ -15,7 +15,8 @@ const callback_nao_ok=()=>{
 }
 
 const configLogin={
-        cor:"rgba(30, 126, 236, 0.801)",
+        // cor:"(30, 126, 236, 0.801)",
+        cor:"048",
         img: "../img/login1.png",
         endpoint: "https://af591cea-e942-4023-bfef-0516e19d00c2-00-28hp6ztbk1kjc.kirk.replit.dev"
 }
