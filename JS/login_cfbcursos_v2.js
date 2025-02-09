@@ -122,14 +122,14 @@ class Login {
             if(res){
                 sessionStorage.setItem("logado","true");
                 sessionStorage.setItem("matlogado",mat);
-                sessionStorage.setItem("nomeLogado",res.nome);
+                sessionStorage.setItem("nomelogado",res.nome);
                 sessionStorage.setItem("acessologado",res.acesso);
                 this.callback_ok();
                 this.fechar();
             }else{
                 sessionStorage.setItem("logado","false");
                 sessionStorage.setItem("matlogado","");
-                sessionStorage.setItem("nomeLogado","");
+                sessionStorage.setItem("nomelogado","");
                 sessionStorage.setItem("acessologado","");
                 this.callback_nao_ok();
             }
