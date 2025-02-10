@@ -32,7 +32,6 @@ class Login{
         ".botoesLogin{display:flex; width:100%; justify-content:space-around; align-items:center; box-sizing:inherit;}"+
         `.botoesLogin button{cursor:pointer; background-color:#{this.config.cor}; color:#fff; border-radius:5px;padding:10px; width:100px; box-sizing:inherit;}`
 
-
         const styleEstilo = document.createElement("style");
         styleEstilo.setAttribute("id","id_estiloLogin");
         styleEstilo.setAttribute("rel","stylesheet");
