@@ -119,7 +119,6 @@ class Login{
         logoLogin.appendChild(imgLogoLogin)
     }
 
-
     static verificarLogin=()=>{
         const mat=document.querySelector("#f_username").value;
         const pas=document.querySelector("#f_password").value;

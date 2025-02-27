@@ -52,8 +52,6 @@ const dgv=(configdgv)=>{
             imgExibir.setAttribute("src","../ICONS/Exibir.svg")
             c5.appendChild(imgExibir)
 
-            
-
             dgvDados.appendChild(dgvLinha)
         });
         console.log(res)
