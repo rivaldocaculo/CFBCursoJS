@@ -42,7 +42,7 @@ const dgv=(configdgv)=>{
             imgApagar.setAttribute("class","dgvIcone")
             imgApagar.setAttribute("src","../ICONS/Apagar.svg")
             imgApagar.addEventListener("click",(evt)=>{
-                const id = evt.target.parentNode.parentNode.firstChild.innerHTML
+                const id = evt.target.parentNode.parentNode.firstChild.innerHTML;
                 const linha = evt.target.parentNode.parentNode;
                 const endpoint = `http://127.0.0.1:1880/removeproduto/${id}`;
                 fetch(endpoint)
@@ -51,7 +51,7 @@ const dgv=(configdgv)=>{
                         linha.remove();
                     }
                 })
-            })
+            });
             c5.appendChild(imgApagar)
 
             const imgEditar = document.createElement("img")
@@ -62,6 +62,20 @@ const dgv=(configdgv)=>{
             const imgExibir = document.createElement("img")
             imgExibir.setAttribute("class","dgvIcone")
             imgExibir.setAttribute("src","../ICONS/Exibir.svg")
+            imgExibir.addEventListener("click",(evt)=>{
+                document.getElementById("janelaView").classList.remove("ocultar");
+                const id = evt.target.parentNode.parentNode.firstChild.innerHTML;
+                const endpoint = `http://127.0.0.1:1880/produto/${id}`;
+                fetch(endpoint)
+                .then(res=>res.json())
+                .then(res=>{
+                    console.log(res)
+                    document.getElementById("f_id").value=res[0].n_id_produto;
+                    document.getElementById("f_produto").value=res[0].s_nome_produto;
+                    document.getElementById("f_marca").value=res[0].s_marca_produto;
+                    document.getElementById("f_modelo").value=res[0].s_modelo_produto;
+                })
+            });
             c5.appendChild(imgExibir)
 
             dgvDados.appendChild(dgvLinha)
@@ -70,11 +84,7 @@ const dgv=(configdgv)=>{
 }
 
 dgv(configdgv);
-// <div class="dgvLinha">
-// <div class="c1">01</div>
-// <div class="c2">Processador</div>
-// <div class="c3">Intel</div>
-// <div class="c4">i7</div>
-// <div class="c5">D E V</div>
-// </div>
 
+document.getElementById("btn_fechar").addEventListener("click",(evt)=>{
+    document.getElementById("janelaView").classList.add("ocultar");
+})
