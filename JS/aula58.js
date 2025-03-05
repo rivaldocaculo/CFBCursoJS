@@ -44,7 +44,6 @@ class Carro{
         this.velmax = velmax
     }
 
-
     info(){
         console.log(`Nome.: ${this.nome}`)
         console.log(`Tipo.: ${this.tipo}`)
@@ -68,3 +67,5 @@ c1.info()
 //c2.info()
 //c3.info()
 //console.log(c1.getInfo()[0])
+
+// ====================================================
